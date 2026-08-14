@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Light palette (default) ---------- */
+:root {
+  --bg: #f6f8fc;
+  --bg-soft: #eef2f9;
+  --surface: #ffffff;
+  --surface-2: #f2f5fb;
+  --line: #dbe3f0;
+  --line-soft: #e8edf6;
+  --text: #0d1b2e;
+  --text-soft: #4a5a72;
+  --text-dim: #7a879b;
+  --ocean: #0b6fd4;
+  --ocean-soft: #e3efff;
+  --teal: #0d9488;
+  --teal-soft: #dcf7f2;
+  --gold: #b57d10;
+  --gold-soft: #fdf1d6;
+  --violet: #6d4aff;
+  --violet-soft: #ece7ff;
+  --rose: #d64571;
+  --rose-soft: #ffe5ec;
+  --shadow: 0 1px 2px rgba(13, 27, 46, 0.06), 0 8px 24px -12px rgba(13, 27, 46, 0.18);
+  --grid-line: rgba(13, 27, 46, 0.05);
+}
+
+/* ---------- Dark palette ---------- */
+:root:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --bg: #060b16;
+    --bg-soft: #0a1120;
+    --surface: #0e1626;
+    --surface-2: #131e31;
+    --line: #1e2c45;
+    --line-soft: #17233a;
+    --text: #eaf1fb;
+    --text-soft: #a9b8cf;
+    --text-dim: #74849d;
+    --ocean: #4aa8ff;
+    --ocean-soft: #10233c;
+    --teal: #2dd4bf;
+    --teal-soft: #0c2b2a;
+    --gold: #f5c451;
+    --gold-soft: #2c2413;
+    --violet: #a48bff;
+    --violet-soft: #1d1a3a;
+    --rose: #ff7ba3;
+    --rose-soft: #331824;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 12px 32px -16px rgba(0, 0, 0, 0.8);
+    --grid-line: rgba(255, 255, 255, 0.04);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #060b16;
+  --bg-soft: #0a1120;
+  --surface: #0e1626;
+  --surface-2: #131e31;
+  --line: #1e2c45;
+  --line-soft: #17233a;
+  --text: #eaf1fb;
+  --text-soft: #a9b8cf;
+  --text-dim: #74849d;
+  --ocean: #4aa8ff;
+  --ocean-soft: #10233c;
+  --teal: #2dd4bf;
+  --teal-soft: #0c2b2a;
+  --gold: #f5c451;
+  --gold-soft: #2c2413;
+  --violet: #a48bff;
+  --violet-soft: #1d1a3a;
+  --rose: #ff7ba3;
+  --rose-soft: #331824;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 12px 32px -16px rgba(0, 0, 0, 0.8);
+  --grid-line: rgba(255, 255, 255, 0.04);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-text: var(--text);
+  --color-text-soft: var(--text-soft);
+  --color-text-dim: var(--text-dim);
+  --color-ocean: var(--ocean);
+  --color-ocean-soft: var(--ocean-soft);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--ocean);
+  color: #fff;
+}
+
+/* Subtle blueprint grid used behind hero sections */
+.blueprint {
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Scrollbars */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Any wide block (diagram / table) scrolls inside itself, never the page */
+.scroll-x {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Prose rhythm for doc bodies */
+.doc-body p {
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-dash {
+  stroke-dasharray: 6 6;
+  animation: dash-flow 1.4s linear infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
